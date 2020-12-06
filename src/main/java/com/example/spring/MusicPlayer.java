@@ -1,40 +1,25 @@
 package com.example.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component //создаст бин из этого класса
 public class MusicPlayer {
 
+    private ClassicalMusic classicalMusic;
     private Music music;
-    private String name;
-    private int volume;
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     //IoC
-    public MusicPlayer(Music music)
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic)
     {
-        this.music = music;
+        this.classicalMusic = classicalMusic;
     }
 
     public MusicPlayer(){}
 
-    public void setMusic(Music music) {
-        this.music = music;
-    }
 
     public void playMusic(){
-        System.out.println("Playing " + music.getSong());
+        System.out.println("Playing " + classicalMusic.getSong());
     }
 }
